@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>TradingLab - Position Size Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TradingLab — Free Trading Calculators</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#0b1120;
-color:white;
-display:flex;
-justify-content:center;
-padding:20px;
+color:#fff;
+line-height:1.5;
 }
 
 .container{
-width:100%;
-max-width:420px;
-margin-top:40px;
+max-width:900px;
+margin:auto;
+padding:20px;
 }
 
 h1{
+font-size:42px;
 text-align:center;
-font-size:34px;
-margin-bottom:8px;
+margin-top:30px;
+margin-bottom:10px;
 }
 
 .subtitle{
 text-align:center;
 color:#94a3b8;
-margin-bottom:30px;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
 .card{
 background:#111827;
 padding:24px;
-border-radius:18px;
+border-radius:16px;
+}
+
+h2{
+margin-top:0;
+font-size:22px;
 }
 
 label{
 display:block;
-margin-bottom:8px;
+margin-top:12px;
+margin-bottom:6px;
 font-size:14px;
 color:#cbd5e1;
 }
 
 input{
 width:100%;
-padding:14px;
-margin-bottom:18px;
+padding:12px;
 border:none;
 border-radius:10px;
 background:#1e293b;
 color:white;
-font-size:16px;
 box-sizing:border-box;
+font-size:16px;
 }
 
 button{
 width:100%;
-padding:14px;
+padding:12px;
+margin-top:16px;
 border:none;
 border-radius:10px;
 background:#2563eb;
@@ -72,28 +82,21 @@ cursor:pointer;
 }
 
 .result{
-margin-top:22px;
-padding:20px;
-background:#1e293b;
-border-radius:12px;
-text-align:center;
-}
-
-.result-number{
-font-size:30px;
+margin-top:18px;
+font-size:24px;
 font-weight:bold;
-margin-top:8px;
+text-align:center;
 }
 
-.footer{
-margin-top:24px;
+footer{
+margin-top:50px;
 text-align:center;
-font-size:12px;
 color:#64748b;
+font-size:13px;
+padding-bottom:30px;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -101,65 +104,129 @@ color:#64748b;
 <h1>TradingLab</h1>
 
 <div class="subtitle">
-Free trading calculators for forex traders
+Free Trading Calculators for Forex, Stocks & Crypto Traders
 </div>
 
+<div class="grid">
+
 <div class="card">
+<h2>Position Size</h2>
 
 <label>Account Balance ($)</label>
 <input id="balance" type="number" placeholder="1000">
 
-<label>Risk Percentage (%)</label>
+<label>Risk %</label>
 <input id="risk" type="number" placeholder="1">
 
 <label>Stop Loss (Pips)</label>
 <input id="stop" type="number" placeholder="50">
 
-<button onclick="calculateLot()">
-Calculate Position Size
-</button>
+<button onclick="calcLot()">Calculate</button>
 
-<div class="result">
-<div>Recommended Lot Size</div>
-<div class="result-number" id="result">
-0.00 Lots
-</div>
+<div class="result" id="lotResult">0.00 Lots</div>
 </div>
 
+
+<div class="card">
+<h2>Risk Reward Ratio</h2>
+
+<label>Entry Price</label>
+<input id="entry" type="number" placeholder="1.2000">
+
+<label>Stop Loss</label>
+<input id="sl" type="number" placeholder="1.1950">
+
+<label>Take Profit</label>
+<input id="tp" type="number" placeholder="1.2100">
+
+<button onclick="calcRR()">Calculate</button>
+
+<div class="result" id="rrResult">0.00 R</div>
 </div>
 
-<div class="footer">
+
+<div class="card">
+<h2>Compound Interest</h2>
+
+<label>Starting Balance ($)</label>
+<input id="principal" type="number" placeholder="1000">
+
+<label>Monthly Return (%)</label>
+<input id="monthly" type="number" placeholder="5">
+
+<label>Months</label>
+<input id="months" type="number" placeholder="12">
+
+<button onclick="calcCompound()">Calculate</button>
+
+<div class="result" id="compoundResult">$0</div>
+</div>
+
+</div>
+
+<footer>
 © 2026 TradingLab.click
-</div>
+</footer>
 
 </div>
+
 
 <script>
 
-function calculateLot(){
+function calcLot(){
 
-const balance =
-parseFloat(document.getElementById("balance").value);
+let balance=parseFloat(document.getElementById('balance').value);
+let risk=parseFloat(document.getElementById('risk').value);
+let stop=parseFloat(document.getElementById('stop').value);
 
-const risk =
-parseFloat(document.getElementById("risk").value);
+if(!balance||!risk||!stop)return;
 
-const stop =
-parseFloat(document.getElementById("stop").value);
+let riskMoney=balance*(risk/100);
 
-if(!balance || !risk || !stop){
-alert("Please fill all fields");
-return;
+let lot=riskMoney/(stop*10);
+
+document.getElementById('lotResult').innerText=
+lot.toFixed(2)+' Lots';
+
 }
 
-const riskMoney =
-balance * (risk / 100);
 
-const lotSize =
-riskMoney / (stop * 10);
+function calcRR(){
 
-document.getElementById("result").innerText =
-lotSize.toFixed(2) + " Lots";
+let entry=parseFloat(document.getElementById('entry').value);
+
+let sl=parseFloat(document.getElementById('sl').value);
+
+let tp=parseFloat(document.getElementById('tp').value);
+
+if(!entry||!sl||!tp)return;
+
+let risk=Math.abs(entry-sl);
+
+let reward=Math.abs(tp-entry);
+
+let rr=reward/risk;
+
+document.getElementById('rrResult').innerText=
+rr.toFixed(2)+' R';
+
+}
+
+
+function calcCompound(){
+
+let p=parseFloat(document.getElementById('principal').value);
+
+let r=parseFloat(document.getElementById('monthly').value)/100;
+
+let m=parseFloat(document.getElementById('months').value);
+
+if(!p||!r||!m)return;
+
+let total=p*Math.pow((1+r),m);
+
+document.getElementById('compoundResult').innerText=
+'$'+total.toFixed(2);
 
 }
 
