@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradingLab — Position Size Calculator</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>TradingLab - Position Size Calculator</title>
 
 <style>
 body{
 margin:0;
-padding:20px;
-background:#0b1220;
 font-family:Arial,sans-serif;
-color:#fff;
+background:#0b1120;
+color:white;
+display:flex;
+justify-content:center;
+padding:20px;
 }
 
 .container{
-max-width:480px;
-margin:auto;
-padding:24px;
-background:#111827;
-border-radius:16px;
+width:100%;
+max-width:420px;
+margin-top:40px;
 }
 
 h1{
-margin:0;
-font-size:32px;
 text-align:center;
+font-size:34px;
+margin-bottom:8px;
 }
 
 .subtitle{
 text-align:center;
 color:#94a3b8;
-margin:8px 0 24px;
+margin-bottom:30px;
+}
+
+.card{
+background:#111827;
+padding:24px;
+border-radius:18px;
 }
 
 label{
 display:block;
-margin:12px 0 6px;
+margin-bottom:8px;
 font-size:14px;
+color:#cbd5e1;
 }
 
 input{
 width:100%;
 padding:14px;
+margin-bottom:18px;
 border:none;
 border-radius:10px;
-font-size:16px;
 background:#1e293b;
 color:white;
+font-size:16px;
 box-sizing:border-box;
 }
 
 button{
 width:100%;
-margin-top:20px;
 padding:14px;
 border:none;
 border-radius:10px;
-font-size:16px;
-font-weight:bold;
 background:#2563eb;
 color:white;
+font-size:16px;
 cursor:pointer;
 }
 
 .result{
-margin-top:20px;
-padding:18px;
-text-align:center;
-font-size:28px;
+margin-top:22px;
+padding:20px;
 background:#1e293b;
 border-radius:12px;
+text-align:center;
+}
+
+.result-number{
+font-size:30px;
+font-weight:bold;
+margin-top:8px;
 }
 
 .footer{
-margin-top:20px;
+margin-top:24px;
 text-align:center;
 font-size:12px;
 color:#64748b;
@@ -89,34 +101,42 @@ color:#64748b;
 <h1>TradingLab</h1>
 
 <div class="subtitle">
-Free Position Size Calculator for Traders
+Free trading calculators for forex traders
 </div>
+
+<div class="card">
 
 <label>Account Balance ($)</label>
 <input id="balance" type="number" placeholder="1000">
 
-<label>Risk Per Trade (%)</label>
+<label>Risk Percentage (%)</label>
 <input id="risk" type="number" placeholder="1">
 
 <label>Stop Loss (Pips)</label>
-<input id="stoploss" type="number" placeholder="50">
+<input id="stop" type="number" placeholder="50">
 
-<button onclick="calculateLotSize()">
-Calculate
+<button onclick="calculateLot()">
+Calculate Position Size
 </button>
 
-<div class="result" id="result">
+<div class="result">
+<div>Recommended Lot Size</div>
+<div class="result-number" id="result">
 0.00 Lots
+</div>
+</div>
+
 </div>
 
 <div class="footer">
-tradinglab.click
+© 2026 TradingLab.click
 </div>
 
 </div>
 
 <script>
-function calculateLotSize(){
+
+function calculateLot(){
 
 const balance =
 parseFloat(document.getElementById("balance").value);
@@ -124,22 +144,25 @@ parseFloat(document.getElementById("balance").value);
 const risk =
 parseFloat(document.getElementById("risk").value);
 
-const stoploss =
-parseFloat(document.getElementById("stoploss").value);
+const stop =
+parseFloat(document.getElementById("stop").value);
 
-if(!balance || !risk || !stoploss){
-document.getElementById("result").innerHTML = "Fill all fields";
+if(!balance || !risk || !stop){
+alert("Please fill all fields");
 return;
 }
 
-const riskAmount = balance * risk / 100;
+const riskMoney =
+balance * (risk / 100);
 
-const lotSize = riskAmount / (stoploss * 10);
+const lotSize =
+riskMoney / (stop * 10);
 
-document.getElementById("result").innerHTML =
+document.getElementById("result").innerText =
 lotSize.toFixed(2) + " Lots";
 
 }
+
 </script>
 
 </body>
