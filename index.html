@@ -3,25 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TradingLab — Free Trading Calculators</title>
+
+<title>TradingLab - Free Trading Calculators & Risk Management Tools</title>
+
+<meta name="description" content="Free trading calculators for forex, stocks and crypto traders. Position Size Calculator, Risk Reward Calculator and Compound Interest Calculator.">
 
 <style>
+
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#0b1120;
 color:#fff;
-line-height:1.5;
+line-height:1.7;
 }
 
 .container{
-max-width:900px;
+max-width:1000px;
 margin:auto;
 padding:20px;
 }
 
 h1{
-font-size:42px;
+font-size:48px;
 text-align:center;
 margin-top:30px;
 margin-bottom:10px;
@@ -30,7 +34,8 @@ margin-bottom:10px;
 .subtitle{
 text-align:center;
 color:#94a3b8;
-margin-bottom:40px;
+margin-bottom:50px;
+font-size:18px;
 }
 
 .grid{
@@ -47,7 +52,7 @@ border-radius:16px;
 
 h2{
 margin-top:0;
-font-size:22px;
+font-size:24px;
 }
 
 label{
@@ -81,11 +86,30 @@ font-size:16px;
 cursor:pointer;
 }
 
+button:hover{
+opacity:0.9;
+}
+
 .result{
 margin-top:18px;
 font-size:24px;
 font-weight:bold;
 text-align:center;
+}
+
+.content{
+margin-top:60px;
+background:#111827;
+padding:30px;
+border-radius:16px;
+}
+
+.content h2{
+margin-top:30px;
+}
+
+.content p{
+color:#d1d5db;
 }
 
 footer{
@@ -95,8 +119,10 @@ color:#64748b;
 font-size:13px;
 padding-bottom:30px;
 }
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -110,12 +136,13 @@ Free Trading Calculators for Forex, Stocks & Crypto Traders
 <div class="grid">
 
 <div class="card">
-<h2>Position Size</h2>
+
+<h2>Position Size Calculator</h2>
 
 <label>Account Balance ($)</label>
 <input id="balance" type="number" placeholder="1000">
 
-<label>Risk %</label>
+<label>Risk Percentage (%)</label>
 <input id="risk" type="number" placeholder="1">
 
 <label>Stop Loss (Pips)</label>
@@ -123,12 +150,15 @@ Free Trading Calculators for Forex, Stocks & Crypto Traders
 
 <button onclick="calcLot()">Calculate</button>
 
-<div class="result" id="lotResult">0.00 Lots</div>
+<div class="result" id="lotResult">
+0.00 Lots
 </div>
 
+</div>
 
 <div class="card">
-<h2>Risk Reward Ratio</h2>
+
+<h2>Risk Reward Calculator</h2>
 
 <label>Entry Price</label>
 <input id="entry" type="number" placeholder="1.2000">
@@ -141,12 +171,15 @@ Free Trading Calculators for Forex, Stocks & Crypto Traders
 
 <button onclick="calcRR()">Calculate</button>
 
-<div class="result" id="rrResult">0.00 R</div>
+<div class="result" id="rrResult">
+0.00 R
 </div>
 
+</div>
 
 <div class="card">
-<h2>Compound Interest</h2>
+
+<h2>Compound Interest Calculator</h2>
 
 <label>Starting Balance ($)</label>
 <input id="principal" type="number" placeholder="1000">
@@ -159,8 +192,67 @@ Free Trading Calculators for Forex, Stocks & Crypto Traders
 
 <button onclick="calcCompound()">Calculate</button>
 
-<div class="result" id="compoundResult">$0</div>
+<div class="result" id="compoundResult">
+$0
 </div>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<h2>What Is Position Sizing?</h2>
+
+<p>
+Position sizing is one of the most important concepts in trading. It helps traders determine how much capital should be allocated to a trade based on account size, risk percentage and stop loss distance.
+</p>
+
+<p>
+Professional traders focus on protecting capital before maximizing profits. Proper position sizing helps traders survive losing streaks and stay consistent over the long term.
+</p>
+
+<h2>Why Risk Management Matters</h2>
+
+<p>
+Risk management is the foundation of successful trading. Many traders fail not because their strategy is bad, but because they risk too much on a single trade.
+</p>
+
+<p>
+Using a fixed percentage risk model allows traders to control drawdowns and avoid catastrophic losses.
+</p>
+
+<h2>The 1% Risk Rule</h2>
+
+<p>
+The 1% rule suggests risking no more than 1% of account equity on a single trade. This simple approach helps traders survive periods of poor performance while maintaining enough capital to benefit when conditions improve.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What is a Position Size Calculator?</h3>
+
+<p>
+A position size calculator determines the correct trade size based on account balance, risk percentage and stop loss distance.
+</p>
+
+<h3>How much should I risk per trade?</h3>
+
+<p>
+Most professional traders recommend risking between 0.5% and 2% of account equity on each trade.
+</p>
+
+<h3>Can I use these calculators for crypto trading?</h3>
+
+<p>
+Yes. Position sizing, risk reward analysis and compound growth calculations can be applied to forex, stocks and cryptocurrency markets.
+</p>
+
+<h3>Is TradingLab free?</h3>
+
+<p>
+Yes. All tools on TradingLab are free to use.
+</p>
 
 </div>
 
@@ -169,7 +261,6 @@ Free Trading Calculators for Forex, Stocks & Crypto Traders
 </footer>
 
 </div>
-
 
 <script>
 
@@ -190,19 +281,15 @@ lot.toFixed(2)+' Lots';
 
 }
 
-
 function calcRR(){
 
 let entry=parseFloat(document.getElementById('entry').value);
-
 let sl=parseFloat(document.getElementById('sl').value);
-
 let tp=parseFloat(document.getElementById('tp').value);
 
 if(!entry||!sl||!tp)return;
 
 let risk=Math.abs(entry-sl);
-
 let reward=Math.abs(tp-entry);
 
 let rr=reward/risk;
@@ -212,13 +299,10 @@ rr.toFixed(2)+' R';
 
 }
 
-
 function calcCompound(){
 
 let p=parseFloat(document.getElementById('principal').value);
-
 let r=parseFloat(document.getElementById('monthly').value)/100;
-
 let m=parseFloat(document.getElementById('months').value);
 
 if(!p||!r||!m)return;
