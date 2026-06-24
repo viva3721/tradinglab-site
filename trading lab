@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+TradingLab | Free Trading Tools & Risk Management
+</title>
+
+<meta name="description"
+content="Free trading calculators, risk management tools, trading education and resources for forex, stocks and crypto traders.">
+
+<meta name="keywords"
+content="position size calculator,risk reward calculator,trading tools,forex calculator,crypto calculator,trading education">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#0b1120;
+color:white;
+line-height:1.7;
+}
+
+a{
+text-decoration:none;
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.navbar{
+background:#111827;
+border-bottom:1px solid #1f2937;
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.nav-inner{
+max-width:1200px;
+margin:auto;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu a{
+color:#cbd5e1;
+}
+
+.menu a:hover{
+color:white;
+}
+
+.hero{
+padding:80px 20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:750px;
+margin:auto;
+font-size:20px;
+color:#94a3b8;
+}
+
+.hero-buttons{
+margin-top:35px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+border-radius:12px;
+margin:10px;
+font-weight:bold;
+}
+
+.btn-primary{
+background:#2563eb;
+}
+
+.btn-secondary{
+background:#1e293b;
+}
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.stat-card{
+background:#111827;
+padding:25px;
+border-radius:16px;
+text-align:center;
+}
+
+.stat-card h2{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+margin-top:80px;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+gap:24px;
+}
+
+.card{
+background:#111827;
+padding:25px;
+border-radius:18px;
+}
+
+.card h3{
+font-size:24px;
+margin-bottom:20px;
+}
+
+.card p{
+color:#cbd5e1;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:8px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#1e293b;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:18px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.result{
+margin-top:20px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+}
+
+.learn-card{
+background:#111827;
+padding:25px;
+border-radius:18px;
+}
+
+.learn-card h3{
+margin-bottom:12px;
+}
+
+.learn-card p{
+color:#cbd5e1;
+}
+
+.resource-box{
+margin-top:60px;
+background:#111827;
+padding:30px;
+border-radius:18px;
+text-align:center;
+}
+
+.resource-box h2{
+margin-bottom:15px;
+}
+
+.resource-box p{
+color:#cbd5e1;
+}
+
+.email-box{
+margin-top:25px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.email-box input{
+margin-bottom:10px;
+}
+
+.faq{
+margin-top:60px;
+}
+
+.faq-item{
+background:#111827;
+padding:20px;
+margin-bottom:15px;
+border-radius:14px;
+}
+
+.faq-item h3{
+margin-bottom:10px;
+}
+
+.footer{
+margin-top:80px;
+padding:40px;
+text-align:center;
+color:#94a3b8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="nav-inner">
+
+<div class="logo">
+TradingLab
+</div>
+
+<div class="menu">
+
+<a href="#">Home</a>
+
+<a href="#tools">Tools</a>
+
+<a href="#learn">Learn</a>
+
+<a href="#resources">Resources</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<section class="hero">
+
+<h1>
+Trade Smarter.
+Risk Less.
+</h1>
+
+<p>
+Free trading calculators,
+risk management tools,
+education resources
+and future trading research.
+Built for forex,
+stocks and crypto traders.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#tools"
+class="btn btn-primary">
+Open Tools
+</a>
+
+<a href="#learn"
+class="btn btn-secondary">
+Learn Trading
+</a>
+
+</div>
+
+</section>
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h2>3</h2>
+
+<p>Free Calculators</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>100%</h2>
+
+<p>Free Access</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>24/7</h2>
+
+<p>Available Online</p>
+
+</div>
+
+</div>
+
+<h2
+class="section-title"
+id="tools">
+Trading Tools
+</h2>
+
+<div class="grid">
+
+<div class="grid">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+function calcLot(){
+
+let balance=parseFloat(document.getElementById('balance').value);
+let risk=parseFloat(document.getElementById('risk').value);
+let stop=parseFloat(document.getElementById('stop').value);
+
+if(!balance||!risk||!stop){
+alert("Fill all fields");
+return;
+}
+
+let riskMoney=balance*(risk/100);
+let lot=riskMoney/(stop*10);
+
+document.getElementById('lotResult').innerText=
+lot.toFixed(2)+" Lots";
+}
+
+function calcRR(){
+
+let entry=parseFloat(document.getElementById('entry').value);
+let sl=parseFloat(document.getElementById('sl').value);
+let tp=parseFloat(document.getElementById('tp').value);
+
+if(!entry||!sl||!tp){
+alert("Fill all fields");
+return;
+}
+
+let risk=Math.abs(entry-sl);
+let reward=Math.abs(tp-entry);
+
+let rr=reward/risk;
+
+document.getElementById('rrResult').innerText=
+rr.toFixed(2)+" R";
+}
+
+function calcCompound(){
+
+let p=parseFloat(document.getElementById('principal').value);
+let r=parseFloat(document.getElementById('monthly').value)/100;
+let m=parseFloat(document.getElementById('months').value);
+
+if(!p||!r||!m){
+alert("Fill all fields");
+return;
+}
+
+let total=p*Math.pow((1+r),m);
+
+document.getElementById('compoundResult').innerText=
+"$"+total.toFixed(2);
+}
+
+</script>
+
+<footer class="footer">
+© 2026 TradingLab. All Rights Reserved.
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
